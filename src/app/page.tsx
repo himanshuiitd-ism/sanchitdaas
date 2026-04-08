@@ -1,12 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 type SectionItem = {
   label: string;
   title: string;
   text: string;
+};
+
+type PublicationItem = {
+  label: string;
+  title: string;
+  text: string;
+  statOneLabel: string;
+  statOneValue: string;
+  statTwoLabel: string;
+  statTwoValue: string;
 };
 
 const foundation: SectionItem[] = [
@@ -18,12 +28,33 @@ const foundation: SectionItem[] = [
   {
     label: "2018–2021",
     title: "B.Sc in Mathematics",
-    text: "Bachelors of Science from Lucknow Christian Degree College with coursework in Mathematics, Computer Science, and Statistics.",
+    text: "Bachelors of Science from Lucknow Christian Degree College with coursework in Mathematics, Computer Science and Statistics.",
+  },
+  // {
+  //   label: "Research Scholar",
+  //   title: "Department of Mathematics and Computing",
+  //   text: "Senior Research Scholar at IIT Dhanbad specializing in nonlocal effects, piezoelectric-poroelastic materials, and applied wave mechanics.",
+  // },
+];
+
+const publications: PublicationItem[] = [
+  {
+    label: "Peer reviewed - 2026",
+    title: "Nonlocal Love Wave Propagation in Piezoelectric-Poroelastic Layered Media",
+    text: "Published in International Journal of Numerical Methods for Heat & Fluid Flow. Investigates spring and membrane interface models with diverse surface exposures using power series technique methodology.",
+    statOneLabel: "Journal",
+    statOneValue: "International Journal of Numerical Methods for Heat & Fluid Flow",
+    statTwoLabel: "Impact Factor",
+    statTwoValue: "5.1 (Q1)",
   },
   {
-    label: "Research Scholar",
-    title: "Department of Mathematics and Computing",
-    text: "Senior Research Scholar at IIT Dhanbad specializing in nonlocal effects, piezoelectric-poroelastic materials, and applied wave mechanics.",
+    label: "Highlighted work",
+    title: "Non-locality Effects on Bluestein-Gulyaev Wave Propagation",
+    text: "Published in Physica Scripta (Q2). Analyzes spring and membrane models in piezo-poroelastic layered structures using advanced mathematical techniques.",
+    statOneLabel: "Journal",
+    statOneValue: "Physica Scripta",
+    statTwoLabel: "Impact Factor",
+    statTwoValue: "2.6 (Q2)",
   },
 ];
 
@@ -32,6 +63,25 @@ export default function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [messageStatus, setMessageStatus] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [publicationIndex, setPublicationIndex] = useState(0);
+
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, []);
+
+  useEffect(() => {
+    const slideTimer = setInterval(() => {
+      setPublicationIndex((prev) => (prev + 1) % publications.length);
+    }, 5000);
+
+    return () => {
+      clearInterval(slideTimer);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,6 +110,16 @@ export default function Home() {
     }
   };
 
+  const activePublication = publications[publicationIndex];
+
+  const showPreviousPublication = () => {
+    setPublicationIndex((prev) => (prev - 1 + publications.length) % publications.length);
+  };
+
+  const showNextPublication = () => {
+    setPublicationIndex((prev) => (prev + 1) % publications.length);
+  };
+
   return (
     <main className="min-h-screen bg-[#070907] px-3 py-3 text-[#ece7df] sm:px-4 sm:py-4 lg:px-5 lg:py-5">
       <div className="mx-auto min-h-[calc(100vh-1.5rem)] w-full max-w-295 overflow-hidden rounded-[22px] border border-white/8 bg-[#0a0d0b] shadow-[0_30px_120px_rgba(0,0,0,0.42)]">
@@ -80,7 +140,7 @@ export default function Home() {
             <a href="#research" className="transition-colors hover:text-[#ece7df]">
               Research
             </a>
-            <a href="#publications" className="transition-colors hover:text-[#ece7df]">
+            <a href="#research" className="transition-colors hover:text-[#ece7df]">
               Publications
             </a>
             <a href="#contact" className="transition-colors hover:text-[#ece7df]">
@@ -97,31 +157,35 @@ export default function Home() {
         </header>
 
         <section className="grid gap-8 px-6 py-7 sm:px-8 sm:py-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 lg:px-10 lg:py-12">
-          <div className="flex flex-col justify-between gap-8 lg:min-h-105 lg:py-4">
-            <div className="max-w-xl space-y-5">
-              <p className="text-[10px] uppercase tracking-[0.46em] text-[#9e998f]">
-                Personal portfolio
-              </p>
-              <h1 className="max-w-xl font-display text-6xl leading-[0.9] tracking-[-0.06em] text-[#f4efe6] sm:text-7xl lg:text-[5.7rem]">
-                Sanchit <span className="italic">Das</span>
-              </h1>
-              <p className="max-w-md text-sm leading-7 text-[#bdb6ad] sm:text-[0.95rem]">
-                Senior Research Scholar at the Department of Mathematics and Computing, Indian Institute of Technology (IIT) Dhanbad. Focused on advanced mathematical modeling and wave propagation analysis in complex material structures.
-              </p>
-            </div>
+  <div className="flex flex-col justify-between gap-4 lg:min-h-105 lg:py-4">
+    <div className="max-w-xl space-y-5">
+      <p className="text-[10px] uppercase tracking-[0.46em] text-[#9e998f]">
+        Personal portfolio
+      </p>
+      <h1 className="max-w-xl font-display text-6xl leading-[0.9] tracking-[-0.06em] text-[#f4efe6] sm:text-7xl lg:text-[5.7rem]">
+        Sanchit <span className="italic">Das</span>
+      </h1>
+      <p className="max-w-lg text-sm leading-7 text-[#bdb6ad] sm:text-[0.95rem] text-justify">
+  Hi, I am a Senior Research Scholar in the Department of Mathematics and Computing at the Indian Institute of Technology (IIT), Dhanbad, working in applied mathematics and elastodynamics. My research explores wave dynamics in advanced composite and piezoelectric materials. My work contributes to the theoretical foundations of smart material systems, with particular relevance to surface acoustic wave sensors.
+</p>
+    </div>
 
-            <div className="max-w-sm space-y-3 text-sm leading-6 text-[#d1cbc1]">
-              <p className="uppercase tracking-[0.34em] text-[#88857e]">Overview</p>
-              <p>
-                Senior Research Scholar at IIT Dhanbad with expertise in wave propagation, nonlocal effects, and advanced material mechanics. Published research in Q1 and Q2 journals with focus on piezoelectric-poroelastic systems.
-              </p>
-            </div>
-          </div>
+    <div className="max-w-sm space-y-3 text-sm leading-6 text-[#d1cbc1]">
+      <p className="uppercase tracking-[0.34em] text-[#88857e]">Research Interests</p>
+      <ul>
+        <li>1. Elastodynamics of smart and functionally graded materials</li>
+        <li>2. Mathematical modelling of wave dynamics in advanced materials.</li>
+        <li>3. Analytical and asymptotic methods for differential equations in continuum mechanics</li>
+        <li>4. Coupled electromechanical behaviour in advanced material systems.</li>
+        <li>5. Surface acoustic wave propagation in smart materials, with applications to SAW devices and non-destructive testing.</li>
+      </ul>
+    </div>
+  </div>
 
-          <div className="relative self-center lg:self-start">
-            <ImageReveal />
-          </div>
-        </section>
+  <div className="relative self-center lg:self-start">
+    <ImageReveal />
+  </div>
+</section>
 
         <section id="about" className="border-t border-white/6 px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
           <div className="grid gap-8 rounded-[26px] bg-[#141815] px-6 py-7 sm:px-7 lg:grid-cols-[0.34fr_0.66fr] lg:px-8 lg:py-8">
@@ -156,10 +220,10 @@ export default function Home() {
           <div className="flex items-end justify-between gap-4">
             <div>
               <p className="font-display text-4xl leading-none tracking-[-0.05em] text-[#f4efe6] sm:text-5xl">
-                Selected
+                Journal
               </p>
               <p className="font-display text-3xl italic leading-none text-[#d7d1c7] sm:text-[2.3rem]">
-                Research
+                Publications
               </p>
             </div>
             <a href="#contact" className="text-[10px] uppercase tracking-[0.34em] text-[#a7a194] transition-colors hover:text-[#ece7df]">
@@ -169,16 +233,34 @@ export default function Home() {
 
           <div className="mt-8 grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
             <article className="rounded-[18px] border border-white/6 bg-[#181b18] p-5 sm:p-6">
-              <p className="text-[10px] uppercase tracking-[0.34em] text-[#928d84]">Peer reviewed - 2026</p>
+              <div className="flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={showPreviousPublication}
+                  aria-label="Show previous publication"
+                  className="h-8 w-8 rounded-full border border-white/15 bg-white/5 text-sm text-[#ece7df] transition-colors hover:bg-white/10"
+                >
+                  ←
+                </button>
+                <p className="text-[10px] uppercase tracking-[0.34em] text-[#928d84]">{activePublication.label}</p>
+                <button
+                  type="button"
+                  onClick={showNextPublication}
+                  aria-label="Show next publication"
+                  className="h-8 w-8 rounded-full border border-white/15 bg-white/5 text-sm text-[#ece7df] transition-colors hover:bg-white/10"
+                >
+                  →
+                </button>
+              </div>
               <h3 className="mt-3 max-w-2xl font-display text-4xl leading-[0.95] tracking-[-0.05em] text-[#f4efe6] sm:text-[3rem]">
-                Nonlocal Love Wave Propagation in Piezoelectric–Poroelastic Layered Media
+                {activePublication.title}
               </h3>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-[#c4bdb3]">
-                Accepted in International Journal of Numerical Methods for Heat & Fluid Flow. Investigates spring and membrane interface models with diverse surface exposures using power series technique methodology.
+                {activePublication.text}
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <Stat label="Impact Factor" value="5.1 (Q1)" />
-                <Stat label="Status" value="Accepted" />
+                <Stat label={activePublication.statOneLabel} value={activePublication.statOneValue} />
+                <Stat label={activePublication.statTwoLabel} value={activePublication.statTwoValue} />
               </div>
             </article>
 
@@ -198,42 +280,6 @@ export default function Home() {
             <MiniCard label="Conferences" title="Three Major Venues" text="Presented at IIT Indore, IIT Dhanbad, RIT Bangalore with international collaborators." accent="dark" />
             <MiniCard label="Workshop" title="Hydrodynamic Stability" text="Completed GIAN Course on Introduction to Hydrodynamic Stability (2025)." accent="green" />
             <MiniCard label="Research Fellow" title="IAS-INSA-NASI" text="Summer Research Fellow at Indian Academy of Sciences (2023)." accent="neutral" />
-          </div>
-        </section>
-
-        <section id="publications" className="border-t border-white/6 px-6 py-8 sm:px-8 lg:px-10 lg:py-10">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <p className="font-display text-4xl leading-none tracking-[-0.05em] text-[#f4efe6] sm:text-5xl">
-                Selected
-              </p>
-              <p className="font-display text-3xl italic leading-none text-[#d7d1c7] sm:text-[2.3rem]">
-                Publications
-              </p>
-            </div>
-            <span className="hidden text-[10px] uppercase tracking-[0.34em] text-[#8f8a82] sm:block">Curate from PDF</span>
-          </div>
-
-          <div className="mt-8 grid gap-4 lg:grid-cols-[1.4fr_0.9fr]">
-            <article className="rounded-[18px] border border-white/6 bg-[#181b18] p-5 sm:p-6">
-              <p className="text-[10px] uppercase tracking-[0.34em] text-[#928d84]">Highlighted work</p>
-              <h3 className="mt-3 font-display text-4xl leading-[0.95] tracking-[-0.05em] text-[#f4efe6] sm:text-[3rem]">
-                Non-locality Effects on Bluestein-Gulyaev Wave Propagation
-              </h3>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#c4bdb3]">
-                Accepted in Physica Scripta (Q2). Analyzes spring and membrane models in piezo-poroelastic layered structures using advanced mathematical techniques.
-              </p>
-            </article>
-
-            <article className="rounded-[18px] border border-white/6 bg-[#181b18] p-5 sm:p-6">
-              <p className="text-[10px] uppercase tracking-[0.34em] text-[#928d84]">Preview tile</p>
-              <div className="mt-4 overflow-hidden rounded-[14px] border border-white/6 bg-black/30">
-                <Image src="/main.jpeg" alt="Main image" width={700} height={500} className="h-56 w-full object-cover" />
-              </div>
-              <p className="mt-4 text-sm leading-7 text-[#c4bdb3]">
-                The main image is used prominently on the screen and remains tied to the interactive reveal at the top.
-              </p>
-            </article>
           </div>
         </section>
 
@@ -340,92 +386,50 @@ function MiniCard({
 }
 
 function ImageReveal() {
-  const [reveal, setReveal] = useState(68);
-  const [isDragging, setIsDragging] = useState(false);
-  const trackRef = useRef<HTMLDivElement | null>(null);
-
-  const clamp = useMemo(() => (value: number) => Math.min(100, Math.max(0, value)), []);
-
-  const updateRevealFromPointer = useCallback(
-    (clientX: number) => {
-      if (!trackRef.current) {
-        return;
-      }
-
-      const bounds = trackRef.current.getBoundingClientRect();
-      const position = ((clientX - bounds.left) / bounds.width) * 100;
-      setReveal(clamp(position));
-    },
-    [clamp],
-  );
+  const [showPrimary, setShowPrimary] = useState(true);
 
   useEffect(() => {
-    const handlePointerMove = (event: PointerEvent) => {
-      if (!isDragging) {
-        return;
-      }
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-      updateRevealFromPointer(event.clientX);
+    const scheduleNextToggle = () => {
+      const nextDelayMs = 5000 + Math.floor(Math.random() * 5001);
+
+      timeoutId = setTimeout(() => {
+        setShowPrimary((prev) => !prev);
+        scheduleNextToggle();
+      }, nextDelayMs);
     };
 
-    const stopDragging = () => {
-      setIsDragging(false);
-    };
-
-    window.addEventListener("pointermove", handlePointerMove);
-    window.addEventListener("pointerup", stopDragging);
-    window.addEventListener("pointercancel", stopDragging);
+    scheduleNextToggle();
 
     return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerup", stopDragging);
-      window.removeEventListener("pointercancel", stopDragging);
+      clearTimeout(timeoutId);
     };
-  }, [clamp, isDragging, updateRevealFromPointer]);
+  }, []);
 
   return (
     <div className="relative mx-auto w-full max-w-105 lg:max-w-110">
-      <div
-        ref={trackRef}
-        className="relative aspect-[0.86] overflow-hidden rounded-[22px] border border-white/10 bg-[#0d100e] shadow-[0_22px_60px_rgba(0,0,0,0.45)] touch-none"
-        onPointerDown={(event) => {
-          setIsDragging(true);
-          updateRevealFromPointer(event.clientX);
-        }}
-      >
+      <div className="relative aspect-[0.86] overflow-hidden rounded-[22px] border border-white/10 bg-[#0d100e] shadow-[0_22px_60px_rgba(0,0,0,0.45)]">
         <Image
           src="/substitute.jpeg"
           alt="Secondary portrait"
           fill
           priority
-          className="object-cover"
+          className={`object-cover transition-opacity duration-1200 ${showPrimary ? "opacity-0" : "opacity-100"}`}
           sizes="(max-width: 1024px) 90vw, 440px"
         />
-        <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${reveal}%` }}>
-          <Image
-            src="/main.jpeg"
-            alt="Primary portrait"
-            fill
-            priority
-            className="object-cover"
-            sizes="(max-width: 1024px) 90vw, 440px"
-          />
-        </div>
+        <Image
+          src="/main.jpeg"
+          alt="Primary portrait"
+          fill
+          priority
+          className={`object-cover transition-opacity duration-1200 ${showPrimary ? "opacity-100" : "opacity-0"}`}
+          sizes="(max-width: 1024px) 90vw, 440px"
+        />
 
-        <div className="absolute inset-y-0" style={{ left: `${reveal}%`, width: 1 }}>
-          <div className="absolute inset-y-0 left-0 w-px bg-[#d7e4d6]/90 shadow-[0_0_18px_rgba(214,228,214,0.8)]" />
-          <button
-            type="button"
-            aria-label="Drag to reveal the secondary image"
-            className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#d7e4d6]/30 bg-[#0d100e]/90 px-3 py-3 text-[10px] uppercase tracking-[0.34em] text-[#d7e4d6] shadow-[0_14px_40px_rgba(0,0,0,0.45)]"
-          >
-            Drag
-          </button>
-        </div>
-
-        <div className="absolute inset-x-4 bottom-4 rounded-full border border-white/10 bg-black/55 px-4 py-2 text-[10px] uppercase tracking-[0.36em] text-[#cdc6bb] backdrop-blur-md">
-          Main image on the screen - slide to view the secondary image
-        </div>
+        {/* <div className="absolute inset-x-4 bottom-4 rounded-full border border-white/10 bg-black/55 px-4 py-2 text-[10px] uppercase tracking-[0.36em] text-[#cdc6bb] backdrop-blur-md">
+          Images auto-switch every 5-10 seconds
+        </div> */}
       </div>
     </div>
   );
