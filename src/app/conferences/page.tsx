@@ -36,42 +36,45 @@ interface ConferenceData {
 }
 
 const conferences: Record<ConferenceKey, ConferenceData> = {
-  indore2023: {
-    id: "indore2023",
-    number: "Conference 01",
-    badge: "Earliest Milestone • Award Winner",
-    title: "International Conference on Applied Mathematics and Mechanics",
-    shortVenue: "IIT Indore",
-    venueFull: "Indian Institute of Technology (IIT) Indore",
-    date: "October 2023",
-    award: "Best Research Paper Award",
+  iccs2026: {
+    id: "iccs2026",
+    number: "Conference 04",
+    badge: "Global Milestone • Cagliari, Italy",
+    title: "29th International Conference on Composite Structures (ICCS29)",
+    shortVenue: "University of Cagliari, Italy",
+    venueFull: "Faculty of Architecture, University of Cagliari, Italy",
+    date: "22–26 June 2026",
+    paperTitle:
+      "Liouville–Green Analysis of Love Wave Dynamics at Spring–Membrane Interfaces in Generalised Linearly Graded Piezo-Viscoelastic Structures with Flexoelectric and Semiconductor Coupling",
     openingText:
-      "My participation in the International Conference on Applied Mathematics and Mechanics at IIT Indore marked one of the earliest important milestones in my research journey. At the time, I was pursuing my Master’s degree in Mathematics and Computing at IIT (ISM) Dhanbad and was still at an early stage of developing my research interests in applied mathematics and mechanics.",
+      "Participating in the 29th International Conference on Composite Structures (ICCS29) at the University of Cagliari, Italy, was an important international milestone in my research journey. By this stage of my doctoral work, my research had evolved toward increasingly complex multiphysics models involving material gradation, imperfect interfaces, viscoelasticity, flexoelectricity, and semiconductor coupling within guided-wave systems.",
     presentedText:
-      "I presented my research, which gave me the opportunity to discuss my work with researchers and academicians from different areas of applied mathematics and mechanics. The experience became particularly memorable when my work was recognised with the Best Research Paper Award.",
+      "At the conference, I presented my work entitled “Liouville–Green Analysis of Love Wave Dynamics at Spring–Membrane Interfaces in Generalised Linearly Graded Piezo-Viscoelastic Structures with Flexoelectric and Semiconductor Coupling.” The study employed the Liouville–Green approach to analyse Love-wave propagation in a sophisticated smart-material configuration, bringing together several physical mechanisms that had progressively become central to my research.",
     extendedText:
-      "Beyond the award, the conference was an important learning experience. It gave me my first significant exposure to presenting research before a wider academic audience and strengthened my motivation to pursue research in mathematical modelling, continuum mechanics, and wave propagation.",
+      "ICCS29 provided an opportunity to present this work within a broad international community working on composite structures, advanced materials, structural mechanics, and computational modelling. Interacting with researchers from different institutions and research backgrounds gave me valuable exposure to wider developments in composite-material mechanics and helped place my own work on guided-wave elastodynamics within a broader international research context.",
+    impactText:
+      "Beyond the technical presentation, attending a major international conference in Cagliari, Italy, was also a memorable personal and academic experience. It represented an important step in taking my research beyond my home institution and presenting it before a wider international scientific community.",
     keyHighlights: [
-      "Awarded Best Research Paper in Poster Category",
-      "First major conference presentation during Master's degree",
-      "Constructive interaction with scholars in applied math and mechanics",
-      "Foundation for subsequent doctoral research in continuum wave mechanics",
+      "Liouville–Green asymptotic analysis of Love wave dynamics",
+      "Multiphysics model coupling viscoelasticity, flexoelectricity & semiconductors",
+      "International symposium at University of Cagliari, Italy",
+      "Exchange with leading authorities in composite structures & mechanics",
     ],
     photos: {
       heroSide: {
-        src: "/conference1a.jpeg",
-        caption: "Delivering the research presentation at IIT Indore",
-        tag: "Presentation Session",
+        src: "/conference4b.jpeg",
+        caption: "Delivering technical research presentation on Love wave dynamics at ICCS29",
+        tag: "Technical Presentation",
       },
       midFeature: {
-        src: "/conference1b.jpeg",
-        caption: "Receiving the Best Research Paper Award from distinguished dignitaries",
-        tag: "Award Ceremony",
+        src: "/conference4a.jpeg",
+        caption: "ICCS29 conference venue banner and welcoming hall in Cagliari, Italy",
+        tag: "Conference Venue",
       },
       reflectionSide: {
-        src: "/conference1c.jpeg",
-        caption: "Academic exchanges and discussions with researchers across India",
-        tag: "Academic Exchange",
+        src: "/conference4c.jpeg",
+        caption: "Historic campus and academic conference environment at University of Cagliari",
+        tag: "Cagliari, Italy",
       },
     },
   },
@@ -134,6 +137,46 @@ const conferences: Record<ConferenceKey, ConferenceData> = {
       ],
     },
   },
+  indore2023: {
+    id: "indore2023",
+    number: "Conference 01",
+    badge: "Earliest Milestone • Award Winner",
+    title: "International Conference on Applied Mathematics and Mechanics",
+    shortVenue: "IIT Indore",
+    venueFull: "Indian Institute of Technology (IIT) Indore",
+    date: "October 2023",
+    award: "Best Research Paper Award",
+    openingText:
+      "My participation in the International Conference on Applied Mathematics and Mechanics at IIT Indore marked one of the earliest important milestones in my research journey. At the time, I was pursuing my Master’s degree in Mathematics and Computing at IIT (ISM) Dhanbad and was still at an early stage of developing my research interests in applied mathematics and mechanics.",
+    presentedText:
+      "I presented my research, which gave me the opportunity to discuss my work with researchers and academicians from different areas of applied mathematics and mechanics. The experience became particularly memorable when my work was recognised with the Best Research Paper Award.",
+    extendedText:
+      "Beyond the award, the conference was an important learning experience. It gave me my first significant exposure to presenting research before a wider academic audience and strengthened my motivation to pursue research in mathematical modelling, continuum mechanics, and wave propagation.",
+    keyHighlights: [
+      "Awarded Best Research Paper in Poster Category",
+      "First major conference presentation during Master's degree",
+      "Constructive interaction with scholars in applied math and mechanics",
+      "Foundation for subsequent doctoral research in continuum wave mechanics",
+    ],
+    photos: {
+      heroSide: {
+        src: "/conference1a.jpeg",
+        caption: "Delivering the research presentation at IIT Indore",
+        tag: "Presentation Session",
+      },
+      midFeature: {
+        src: "/conference1b.jpeg",
+        caption: "Receiving the Best Research Paper Award from distinguished dignitaries",
+        tag: "Award Ceremony",
+      },
+      reflectionSide: {
+        src: "/conference1c.jpeg",
+        caption: "Academic exchanges and discussions with researchers across India",
+        tag: "Academic Exchange",
+      },
+    },
+  },
+  
   icmams2024: {
     id: "icmams2024",
     number: "Conference 03",
@@ -187,49 +230,8 @@ const conferences: Record<ConferenceKey, ConferenceData> = {
         },
       ],
     },
-  },
-  iccs2026: {
-    id: "iccs2026",
-    number: "Conference 04",
-    badge: "Global Milestone • Cagliari, Italy",
-    title: "29th International Conference on Composite Structures (ICCS29)",
-    shortVenue: "University of Cagliari, Italy",
-    venueFull: "Faculty of Architecture, University of Cagliari, Italy",
-    date: "22–26 June 2026",
-    paperTitle:
-      "Liouville–Green Analysis of Love Wave Dynamics at Spring–Membrane Interfaces in Generalised Linearly Graded Piezo-Viscoelastic Structures with Flexoelectric and Semiconductor Coupling",
-    openingText:
-      "Participating in the 29th International Conference on Composite Structures (ICCS29) at the University of Cagliari, Italy, was an important international milestone in my research journey. By this stage of my doctoral work, my research had evolved toward increasingly complex multiphysics models involving material gradation, imperfect interfaces, viscoelasticity, flexoelectricity, and semiconductor coupling within guided-wave systems.",
-    presentedText:
-      "At the conference, I presented my work entitled “Liouville–Green Analysis of Love Wave Dynamics at Spring–Membrane Interfaces in Generalised Linearly Graded Piezo-Viscoelastic Structures with Flexoelectric and Semiconductor Coupling.” The study employed the Liouville–Green approach to analyse Love-wave propagation in a sophisticated smart-material configuration, bringing together several physical mechanisms that had progressively become central to my research.",
-    extendedText:
-      "ICCS29 provided an opportunity to present this work within a broad international community working on composite structures, advanced materials, structural mechanics, and computational modelling. Interacting with researchers from different institutions and research backgrounds gave me valuable exposure to wider developments in composite-material mechanics and helped place my own work on guided-wave elastodynamics within a broader international research context.",
-    impactText:
-      "Beyond the technical presentation, attending a major international conference in Cagliari, Italy, was also a memorable personal and academic experience. It represented an important step in taking my research beyond my home institution and presenting it before a wider international scientific community.",
-    keyHighlights: [
-      "Liouville–Green asymptotic analysis of Love wave dynamics",
-      "Multiphysics model coupling viscoelasticity, flexoelectricity & semiconductors",
-      "International symposium at University of Cagliari, Italy",
-      "Exchange with leading authorities in composite structures & mechanics",
-    ],
-    photos: {
-      heroSide: {
-        src: "/conference4b.jpeg",
-        caption: "Delivering technical research presentation on Love wave dynamics at ICCS29",
-        tag: "Technical Presentation",
-      },
-      midFeature: {
-        src: "/conference4a.jpeg",
-        caption: "ICCS29 conference venue banner and welcoming hall in Cagliari, Italy",
-        tag: "Conference Venue",
-      },
-      reflectionSide: {
-        src: "/conference4c.jpeg",
-        caption: "Historic campus and academic conference environment at University of Cagliari",
-        tag: "Cagliari, Italy",
-      },
-    },
-  },
+  }
+  
 };
 
 export default function ConferencesPage() {
@@ -290,11 +292,14 @@ export default function ConferencesPage() {
           <span className="text-white border-b border-white/60 pb-0.5">
             Conferences
           </span>
+          <Link href="/research-fellow" className="transition-colors hover:text-white">
+            Research Fellow
+          </Link>
+          <Link href="/hydrodynamic-stability" className="transition-colors hover:text-white">
+            Hydrodynamic Stability
+          </Link>
           <Link href="/beyond-research" className="transition-colors hover:text-white">
             Beyond Research
-          </Link>
-          <Link href="/#contact" className="transition-colors hover:text-white">
-            Contact
           </Link>
         </nav>
       </header>
@@ -749,12 +754,24 @@ export default function ConferencesPage() {
           {/* Page Footer Navigation */}
           <div className="mt-20 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
             <p>© 2026 Sanchit Das • Academic Portfolio</p>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <Link
                 href="/"
                 className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-4 py-2 font-medium text-neutral-900 shadow-sm transition hover:bg-neutral-50"
               >
                 <span>← Back to Home</span>
+              </Link>
+              <Link
+                href="/research-fellow"
+                className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-4 py-2 font-medium text-neutral-900 shadow-sm transition hover:bg-neutral-50"
+              >
+                <span>Research Fellow →</span>
+              </Link>
+              <Link
+                href="/hydrodynamic-stability"
+                className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-white px-4 py-2 font-medium text-neutral-900 shadow-sm transition hover:bg-neutral-50"
+              >
+                <span>Hydrodynamic Stability →</span>
               </Link>
               <Link
                 href="/beyond-research"

@@ -161,14 +161,15 @@ export default function Home() {
             <a href="#about" className="transition-colors hover:text-[#ece7df]">
               About
             </a>
-            <a href="/beyond-research" className="transition-colors hover:text-[#ece7df]">
-              Beyond Research
-            </a>
+            
             <Link href="/conferences" className="transition-colors hover:text-[#ece7df]">
               Conferences
             </Link>
             <a href="#research" className="transition-colors hover:text-[#ece7df]">
               Publications
+            </a>
+            <a href="/beyond-research" className="transition-colors hover:text-[#ece7df]">
+              Beyond Research
             </a>
             <a href="#contact" className="transition-colors hover:text-[#ece7df]">
               Contact
@@ -369,20 +370,34 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-white/6 flex flex-wrap items-center justify-between gap-2 text-xs text-[#8f8a82]">
+              <div className="mt-4 pt-3 border-t border-white/6 flex flex-wrap items-center justify-between gap-3 text-xs text-[#8f8a82]">
                 <span>Showing {publicationIndex + 1} of {publications.length}</span>
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-2.5">
                   <Link
                     href="/conferences"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-[#d6e4d2] transition hover:bg-white/10 hover:text-white"
+                    className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-[#d6e4d2] transition hover:bg-white/10 hover:text-white"
                   >
                     <span>Conferences (4)</span>
+                    <span>→</span>
+                  </Link>
+                  <Link
+                    href="/research-fellow"
+                    className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-[#d6e4d2] transition hover:bg-white/10 hover:text-white"
+                  >
+                    <span>Research Fellow</span>
+                    <span>→</span>
+                  </Link>
+                  <Link
+                    href="/hydrodynamic-stability"
+                    className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-[#d6e4d2] transition hover:bg-white/10 hover:text-white"
+                  >
+                    <span>GIAN Course</span>
                     <span>→</span>
                   </Link>
                   <button
                     type="button"
                     onClick={() => setIsCvOpen(true)}
-                    className="text-xs text-[#d6e4d2] hover:underline cursor-pointer"
+                    className="text-xs text-[#d6e4d2] hover:underline cursor-pointer ml-1"
                   >
                     View full CV →
                   </button>
@@ -391,8 +406,12 @@ export default function Home() {
             </article>
           </div>
 
-          <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            <MiniCard label="Award" title="Best Research Paper" text="Best Research Paper Award in Poster Category at IIT Indore (2023)." accent="neutral" />
+          <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4" style={{
+            display:"flex", justifyContent:"space-between"
+          }}>
+            <Link href="/conferences" className="block group transition-transform hover:-translate-y-1">
+              {/* <MiniCard label="Award • Best Paper" title="IIT Indore 2023 →" text="Best Research Paper Award in Poster Category at IIT Indore Conference." accent="neutral" /> */}
+            </Link>
             <Link href="/conferences" className="block group transition-transform hover:-translate-y-1">
               <MiniCard
                 label="Conferences • Click to Explore"
@@ -401,8 +420,22 @@ export default function Home() {
                 accent="dark"
               />
             </Link>
-            <MiniCard label="Workshop" title="Hydrodynamic Stability" text="Completed GIAN Course on Introduction to Hydrodynamic Stability (2025)." accent="green" />
-            <MiniCard label="Research Fellow" title="IAS-INSA-NASI" text="Summer Research Fellow at Indian Academy of Sciences (2023)." accent="neutral" />
+            <Link href="/hydrodynamic-stability" className="block group transition-transform hover:-translate-y-1">
+              <MiniCard
+                label="Workshop • Click to Explore"
+                title="Hydrodynamic Stability →"
+                text="Completed GIAN Course on Introduction to Hydrodynamic Stability with Prof. Sergey Suslov (2025)."
+                accent="green"
+              />
+            </Link>
+            <Link href="/research-fellow" className="block group transition-transform hover:-translate-y-1">
+              <MiniCard
+                label="Fellowship • Click to Explore"
+                title="IASc–INSA–NASI →"
+                text="Summer Research Fellow at Indian Academy of Sciences & C-DAC Bengaluru (2023)."
+                accent="neutral"
+              />
+            </Link>
           </div>
         </section>
 
