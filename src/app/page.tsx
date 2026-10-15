@@ -157,7 +157,7 @@ export default function Home() {
           </div>
 
           <nav className="hidden items-center gap-8 text-sm text-[#b9b3aa] md:flex">
-            <a href="#about" className="transition-colors hover:text-[#ece7df]">
+            <a href="" className="transition-colors hover:text-[#ece7df]">
               About
             </a>
             <a href="#research" className="transition-colors hover:text-[#ece7df]">
