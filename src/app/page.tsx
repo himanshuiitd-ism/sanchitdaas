@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 
 type SectionItem = {
@@ -163,6 +164,9 @@ export default function Home() {
             <a href="/beyond-research" className="transition-colors hover:text-[#ece7df]">
               Beyond Research
             </a>
+            <Link href="/conferences" className="transition-colors hover:text-[#ece7df]">
+              Conferences
+            </Link>
             <a href="#research" className="transition-colors hover:text-[#ece7df]">
               Publications
             </a>
@@ -365,22 +369,38 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-white/6 flex items-center justify-between text-xs text-[#8f8a82]">
+              <div className="mt-4 pt-3 border-t border-white/6 flex flex-wrap items-center justify-between gap-2 text-xs text-[#8f8a82]">
                 <span>Showing {publicationIndex + 1} of {publications.length}</span>
-                <button
-                  type="button"
-                  onClick={() => setIsCvOpen(true)}
-                  className="text-xs text-[#d6e4d2] hover:underline cursor-pointer"
-                >
-                  View full CV →
-                </button>
+                <div className="flex items-center gap-4">
+                  <Link
+                    href="/conferences"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-[#d6e4d2] transition hover:bg-white/10 hover:text-white"
+                  >
+                    <span>Conferences (4)</span>
+                    <span>→</span>
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => setIsCvOpen(true)}
+                    className="text-xs text-[#d6e4d2] hover:underline cursor-pointer"
+                  >
+                    View full CV →
+                  </button>
+                </div>
               </div>
             </article>
           </div>
 
           <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             <MiniCard label="Award" title="Best Research Paper" text="Best Research Paper Award in Poster Category at IIT Indore (2023)." accent="neutral" />
-            <MiniCard label="Conferences" title="Four Major Venues" text="Presented at IIT Indore, IIT Dhanbad, RIT Bangalore, University of Cagliari, Italy with international collaborators." accent="dark" />
+            <Link href="/conferences" className="block group transition-transform hover:-translate-y-1">
+              <MiniCard
+                label="Conferences • Click to Explore"
+                title="Four Major Venues →"
+                text="Presented at IIT Indore, IIT Dhanbad, RIT Bangalore, and University of Cagliari, Italy with international collaborators."
+                accent="dark"
+              />
+            </Link>
             <MiniCard label="Workshop" title="Hydrodynamic Stability" text="Completed GIAN Course on Introduction to Hydrodynamic Stability (2025)." accent="green" />
             <MiniCard label="Research Fellow" title="IAS-INSA-NASI" text="Summer Research Fellow at Indian Academy of Sciences (2023)." accent="neutral" />
           </div>
