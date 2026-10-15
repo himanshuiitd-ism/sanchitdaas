@@ -64,6 +64,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [messageStatus, setMessageStatus] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [publicationIndex, setPublicationIndex] = useState(0);
+  const [isCvOpen, setIsCvOpen] = useState(false);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -148,12 +149,13 @@ export default function Home() {
             </a>
           </nav>
 
-          <a
-            href="#contact"
-            className="rounded-full border border-[#c5d8c5]/20 bg-[#d6e4d2] px-4 py-2 text-xs font-medium text-[#0a0d0b] transition-transform hover:-translate-y-0.5"
+          <button
+            type="button"
+            onClick={() => setIsCvOpen(true)}
+            className="rounded-full border border-[#c5d8c5]/20 bg-[#d6e4d2] px-4 py-2 text-xs font-medium text-[#0a0d0b] transition-all hover:-translate-y-0.5 hover:bg-[#e2ede0] active:translate-y-0 cursor-pointer shadow-sm"
           >
             Curriculum Vitae
-          </a>
+          </button>
         </header>
 
         <section className="grid gap-8 px-6 py-7 sm:px-8 sm:py-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 lg:px-10 lg:py-12">
@@ -226,9 +228,13 @@ export default function Home() {
                 Publications
               </p>
             </div>
-            <a href="#contact" className="text-[10px] uppercase tracking-[0.34em] text-[#a7a194] transition-colors hover:text-[#ece7df]">
-              View full biography
-            </a>
+            <button
+              type="button"
+              onClick={() => setIsCvOpen(true)}
+              className="text-[10px] uppercase tracking-[0.34em] text-[#a7a194] transition-colors hover:text-[#ece7df] cursor-pointer"
+            >
+              View full biography & CV
+            </button>
           </div>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
@@ -344,6 +350,8 @@ export default function Home() {
           </div>
         </section>
       </div>
+
+      <CVModal isOpen={isCvOpen} onClose={() => setIsCvOpen(false)} />
     </main>
   );
 }
@@ -430,6 +438,153 @@ function ImageReveal() {
         {/* <div className="absolute inset-x-4 bottom-4 rounded-full border border-white/10 bg-black/55 px-4 py-2 text-[10px] uppercase tracking-[0.36em] text-[#cdc6bb] backdrop-blur-md">
           Images auto-switch every 5-10 seconds
         </div> */}
+      </div>
+    </div>
+  );
+}
+
+function CVModal({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-2 sm:p-4 md:p-6 backdrop-blur-md"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cv-modal-title"
+    >
+      <div
+        className="relative flex h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-[20px] border border-white/12 bg-[#0d100e] shadow-[0_25px_80px_rgba(0,0,0,0.85)]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header Bar */}
+        <div className="flex items-center justify-between border-b border-white/8 bg-[#121613] px-4 py-3 sm:px-6">
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#d6e4d2]">
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </div>
+            <div>
+              <h2
+                id="cv-modal-title"
+                className="font-display text-base font-medium tracking-[-0.02em] text-[#f4efe6] sm:text-lg"
+              >
+                Curriculum Vitae
+              </h2>
+              <p className="text-[10px] uppercase tracking-[0.25em] text-[#8f8a82]">
+                Sanchit Das • IIT (ISM) Dhanbad
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Download Button */}
+            <a
+              href="/Curriculum_Vitae_Sanchit_Das.pdf"
+              download="Curriculum_Vitae_Sanchit_Das.pdf"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#c5d8c5]/30 bg-[#d6e4d2] px-3.5 py-1.5 text-xs font-semibold text-[#0a0d0b] transition hover:bg-[#e4efe1] hover:shadow-[0_0_15px_rgba(214,228,210,0.3)] active:scale-95"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                />
+              </svg>
+              <span>Download CV</span>
+            </a>
+
+            {/* Open in new tab button */}
+            <a
+              href="/Curriculum_Vitae_Sanchit_Das.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-[#ece7df] transition hover:bg-white/10 hover:text-white"
+              title="Open PDF in a new browser tab"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+              <span>New Tab</span>
+            </a>
+
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/5 text-[#ece7df] transition hover:bg-white/15 hover:text-white cursor-pointer"
+              aria-label="Close CV viewer"
+            >
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Embedded Viewer Body */}
+        <div className="relative flex-1 w-full bg-[#151916] overflow-hidden">
+          <object
+            data="/Curriculum_Vitae_Sanchit_Das.pdf#toolbar=1"
+            type="application/pdf"
+            className="w-full h-full"
+          >
+            <iframe
+              src="/Curriculum_Vitae_Sanchit_Das.pdf#toolbar=1"
+              className="w-full h-full border-0"
+              title="Curriculum Vitae of Sanchit Das"
+            >
+              <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center text-[#d1cbc1]">
+                <p className="text-base">Unable to render PDF directly in your browser.</p>
+                <a
+                  href="/Curriculum_Vitae_Sanchit_Das.pdf"
+                  download="Curriculum_Vitae_Sanchit_Das.pdf"
+                  className="rounded-full bg-[#d6e4d2] px-5 py-2.5 text-xs font-semibold text-[#0a0d0b]"
+                >
+                  Download Curriculum Vitae
+                </a>
+              </div>
+            </iframe>
+          </object>
+        </div>
       </div>
     </div>
   );
