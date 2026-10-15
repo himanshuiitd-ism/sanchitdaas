@@ -38,7 +38,7 @@ interface ConferenceData {
 const conferences: Record<ConferenceKey, ConferenceData> = {
   iccs2026: {
     id: "iccs2026",
-    number: "Conference 04",
+    number: "Conference 01",
     badge: "Global Milestone • Cagliari, Italy",
     title: "29th International Conference on Composite Structures (ICCS29)",
     shortVenue: "University of Cagliari, Italy",
@@ -78,9 +78,105 @@ const conferences: Record<ConferenceKey, ConferenceData> = {
       },
     },
   },
+
+  icmams2024: {
+    id: "icmams2024",
+    number: "Conference 02",
+    badge: "International Conference • Advanced Materials",
+    title: "4th International Conference on Mechanics of Advanced Materials and Structures (ICMAMS 2024)",
+    shortVenue: "RIT Bengaluru",
+    venueFull: "Ramaiah Institute of Technology, Bengaluru",
+    date: "11–13 December 2024",
+    paperTitle:
+      "Analysis of Bleustein–Gulyaev and Love Waves in a Composite Structure composed of Magneto-electro-mechanical Transversely Isotropic Materials with a Sandwiched Buffer Layer",
+    openingText:
+      "My participation in ICMAMS 2024 at Ramaiah Institute of Technology, Bengaluru, marked another important stage in my research journey. By this time, my work had become increasingly focused on elastic wave propagation in multifunctional smart-material structures and on understanding the influence of material coupling, interfaces, and layered configurations on guided-wave behaviour.",
+    presentedText:
+      "At the conference, I presented my work entitled “Analysis of Bleustein–Gulyaev and Love Waves in a Composite Structure composed of Magneto-electro-mechanical Transversely Isotropic Materials with a Sandwiched Buffer Layer.” The study explored two important classes of surface and guided waves within a coupled magneto-electro-mechanical composite system and represented an important development in my work on smart layered structures.",
+    extendedText:
+      "The conference brought together more than 200 researchers, scientists, and professionals working in advanced materials, structural mechanics, analytical and computational methods, and related areas. It also featured distinguished researchers from institutions including Texas A&M University, Politecnico di Torino, Johns Hopkins University, IISc, Zhejiang University, and INSA Toulouse, making it a valuable opportunity to experience a genuinely international research environment.",
+    impactText:
+      "For me, ICMAMS 2024 was particularly valuable because it allowed me to present work closely aligned with my developing doctoral research, interact with researchers working in advanced materials and mechanics, and gain a broader perspective on how analytical modelling of smart-material waveguides fits within the larger field of mechanics of advanced materials and structures.",
+    keyHighlights: [
+      "Rigorous dual analysis of Bleustein–Gulyaev & Love waves with sandwiched buffer layer",
+      "Networked with researchers from Texas A&M, Politecnico di Torino, Johns Hopkins, & IISc",
+      "Over 200 global participants in advanced materials and structural mechanics",
+      "Direct alignment with ongoing doctoral research in smart waveguides",
+    ],
+    photos: {
+      heroSide: {
+        src: "/conference2a.jpeg",
+        caption: "Delivering the oral presentation at ICMAMS 2024 Bengaluru",
+        tag: "Technical Session",
+      },
+      midFeature: {
+        src: "/conference2b.jpeg",
+        caption: "Detailed slide breakdown of wave modes in coupled composite media",
+        tag: "Research Slide",
+      },
+      reflectionSide: {
+        src: "/conference2c.jpeg",
+        caption: "Panel interactions with international delegates and session chairs",
+        tag: "International Panel",
+      },
+      additional: [
+        {
+          src: "/conference2d.jpeg",
+          caption: "Technical exchange session at Ramaiah Institute of Technology",
+          tag: "Exchange",
+        },
+        {
+          src: "/conference2e.jpeg",
+          caption: "Group photo with conference organizers and distinguished delegates",
+          tag: "Delegates Gathering",
+        },
+      ],
+    },
+  },
+
+  indore2023: {
+    id: "indore2023",
+    number: "Conference 03",
+    badge: "Milestone • Award Winner",
+    title: "International Conference on Applied Mathematics and Mechanics",
+    shortVenue: "IIT Indore",
+    venueFull: "Indian Institute of Technology (IIT) Indore",
+    date: "October 2023",
+    award: "Best Research Paper Award",
+    openingText:
+      "My participation in the International Conference on Applied Mathematics and Mechanics at IIT Indore marked one of the earliest important milestones in my research journey. At the time, I was pursuing my Master’s degree in Mathematics and Computing at IIT (ISM) Dhanbad and was still at an early stage of developing my research interests in applied mathematics and mechanics.",
+    presentedText:
+      "I presented my research, which gave me the opportunity to discuss my work with researchers and academicians from different areas of applied mathematics and mechanics. The experience became particularly memorable when my work was recognised with the Best Research Paper Award.",
+    extendedText:
+      "Beyond the award, the conference was an important learning experience. It gave me my first significant exposure to presenting research before a wider academic audience and strengthened my motivation to pursue research in mathematical modelling, continuum mechanics, and wave propagation.",
+    keyHighlights: [
+      "Awarded Best Research Paper in Poster Category",
+      "First major conference presentation during Master's degree",
+      "Constructive interaction with scholars in applied math and mechanics",
+      "Foundation for subsequent doctoral research in continuum wave mechanics",
+    ],
+    photos: {
+      heroSide: {
+        src: "/conference1a.jpeg",
+        caption: "Delivering the research presentation at IIT Indore",
+        tag: "Presentation Session",
+      },
+      midFeature: {
+        src: "/conference1b.jpeg",
+        caption: "Receiving the Best Research Paper Award from distinguished dignitaries",
+        tag: "Award Ceremony",
+      },
+      reflectionSide: {
+        src: "/conference1c.jpeg",
+        caption: "Academic exchanges and discussions with researchers across India",
+        tag: "Academic Exchange",
+      },
+    },
+  },
+
   mams2024: {
     id: "mams2024",
-    number: "Conference 02",
+    number: "Conference 04",
     badge: "National Conference • Home Institution",
     title: "National Conference on Mathematical Modelling and Simulations (MAMS 2024)",
     shortVenue: "IIT (ISM) Dhanbad",
@@ -137,106 +233,11 @@ const conferences: Record<ConferenceKey, ConferenceData> = {
       ],
     },
   },
-  indore2023: {
-    id: "indore2023",
-    number: "Conference 01",
-    badge: "Earliest Milestone • Award Winner",
-    title: "International Conference on Applied Mathematics and Mechanics",
-    shortVenue: "IIT Indore",
-    venueFull: "Indian Institute of Technology (IIT) Indore",
-    date: "October 2023",
-    award: "Best Research Paper Award",
-    openingText:
-      "My participation in the International Conference on Applied Mathematics and Mechanics at IIT Indore marked one of the earliest important milestones in my research journey. At the time, I was pursuing my Master’s degree in Mathematics and Computing at IIT (ISM) Dhanbad and was still at an early stage of developing my research interests in applied mathematics and mechanics.",
-    presentedText:
-      "I presented my research, which gave me the opportunity to discuss my work with researchers and academicians from different areas of applied mathematics and mechanics. The experience became particularly memorable when my work was recognised with the Best Research Paper Award.",
-    extendedText:
-      "Beyond the award, the conference was an important learning experience. It gave me my first significant exposure to presenting research before a wider academic audience and strengthened my motivation to pursue research in mathematical modelling, continuum mechanics, and wave propagation.",
-    keyHighlights: [
-      "Awarded Best Research Paper in Poster Category",
-      "First major conference presentation during Master's degree",
-      "Constructive interaction with scholars in applied math and mechanics",
-      "Foundation for subsequent doctoral research in continuum wave mechanics",
-    ],
-    photos: {
-      heroSide: {
-        src: "/conference1a.jpeg",
-        caption: "Delivering the research presentation at IIT Indore",
-        tag: "Presentation Session",
-      },
-      midFeature: {
-        src: "/conference1b.jpeg",
-        caption: "Receiving the Best Research Paper Award from distinguished dignitaries",
-        tag: "Award Ceremony",
-      },
-      reflectionSide: {
-        src: "/conference1c.jpeg",
-        caption: "Academic exchanges and discussions with researchers across India",
-        tag: "Academic Exchange",
-      },
-    },
-  },
-  
-  icmams2024: {
-    id: "icmams2024",
-    number: "Conference 03",
-    badge: "International Conference • Advanced Materials",
-    title: "4th International Conference on Mechanics of Advanced Materials and Structures (ICMAMS 2024)",
-    shortVenue: "RIT Bengaluru",
-    venueFull: "Ramaiah Institute of Technology, Bengaluru",
-    date: "11–13 December 2024",
-    paperTitle:
-      "Analysis of Bleustein–Gulyaev and Love Waves in a Composite Structure composed of Magneto-electro-mechanical Transversely Isotropic Materials with a Sandwiched Buffer Layer",
-    openingText:
-      "My participation in ICMAMS 2024 at Ramaiah Institute of Technology, Bengaluru, marked another important stage in my research journey. By this time, my work had become increasingly focused on elastic wave propagation in multifunctional smart-material structures and on understanding the influence of material coupling, interfaces, and layered configurations on guided-wave behaviour.",
-    presentedText:
-      "At the conference, I presented my work entitled “Analysis of Bleustein–Gulyaev and Love Waves in a Composite Structure composed of Magneto-electro-mechanical Transversely Isotropic Materials with a Sandwiched Buffer Layer.” The study explored two important classes of surface and guided waves within a coupled magneto-electro-mechanical composite system and represented an important development in my work on smart layered structures.",
-    extendedText:
-      "The conference brought together more than 200 researchers, scientists, and professionals working in advanced materials, structural mechanics, analytical and computational methods, and related areas. It also featured distinguished researchers from institutions including Texas A&M University, Politecnico di Torino, Johns Hopkins University, IISc, Zhejiang University, and INSA Toulouse, making it a valuable opportunity to experience a genuinely international research environment.",
-    impactText:
-      "For me, ICMAMS 2024 was particularly valuable because it allowed me to present work closely aligned with my developing doctoral research, interact with researchers working in advanced materials and mechanics, and gain a broader perspective on how analytical modelling of smart-material waveguides fits within the larger field of mechanics of advanced materials and structures.",
-    keyHighlights: [
-      "Rigorous dual analysis of Bleustein–Gulyaev & Love waves with sandwiched buffer layer",
-      "Networked with researchers from Texas A&M, Politecnico di Torino, Johns Hopkins, & IISc",
-      "Over 200 global participants in advanced materials and structural mechanics",
-      "Direct alignment with ongoing doctoral research in smart waveguides",
-    ],
-    photos: {
-      heroSide: {
-        src: "/conference2a.jpeg",
-        caption: "Delivering the oral presentation at ICMAMS 2024 Bengaluru",
-        tag: "Technical Session",
-      },
-      midFeature: {
-        src: "/conference2b.jpeg",
-        caption: "Detailed slide breakdown of wave modes in coupled composite media",
-        tag: "Research Slide",
-      },
-      reflectionSide: {
-        src: "/conference2c.jpeg",
-        caption: "Panel interactions with international delegates and session chairs",
-        tag: "International Panel",
-      },
-      additional: [
-        {
-          src: "/conference2d.jpeg",
-          caption: "Technical exchange session at Ramaiah Institute of Technology",
-          tag: "Exchange",
-        },
-        {
-          src: "/conference2e.jpeg",
-          caption: "Group photo with conference organizers and distinguished delegates",
-          tag: "Delegates Gathering",
-        },
-      ],
-    },
-  }
-  
 };
 
 export default function ConferencesPage() {
   const [scrollY, setScrollY] = useState(0);
-  const [activeKey, setActiveKey] = useState<ConferenceKey>("indore2023");
+  const [activeKey, setActiveKey] = useState<ConferenceKey>("iccs2026");
   const [lightboxImage, setLightboxImage] = useState<ConferencePhoto | null>(null);
 
   useEffect(() => {
@@ -254,7 +255,7 @@ export default function ConferencesPage() {
   const heroTranslateY = scrollY * 0.35;
 
   const current = conferences[activeKey];
-  const keys: ConferenceKey[] = ["indore2023", "mams2024", "icmams2024", "iccs2026"];
+  const keys: ConferenceKey[] = ["iccs2026", "icmams2024", "indore2023", "mams2024"];
   const currentIndex = keys.indexOf(activeKey);
 
   const goToNextConference = () => {

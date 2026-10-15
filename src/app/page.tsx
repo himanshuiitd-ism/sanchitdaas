@@ -406,17 +406,12 @@ export default function Home() {
             </article>
           </div>
 
-          <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4" style={{
-            display:"flex", justifyContent:"space-between"
-          }}>
-            <Link href="/conferences" className="block group transition-transform hover:-translate-y-1">
-              {/* <MiniCard label="Award • Best Paper" title="IIT Indore 2023 →" text="Best Research Paper Award in Poster Category at IIT Indore Conference." accent="neutral" /> */}
-            </Link>
+          <div className="mt-4 grid gap-4 grid-cols-1 md:grid-cols-3">
             <Link href="/conferences" className="block group transition-transform hover:-translate-y-1">
               <MiniCard
                 label="Conferences • Click to Explore"
                 title="Four Major Venues →"
-                text="Presented at IIT Indore, IIT Dhanbad, RIT Bangalore, and University of Cagliari, Italy with international collaborators."
+                text="Presented at University of Cagliari (Italy), RIT Bangalore, IIT Indore, and IIT (ISM) Dhanbad."
                 accent="dark"
               />
             </Link>
