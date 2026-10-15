@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 type SectionItem = {
   label: string;
@@ -100,7 +100,19 @@ export default function Home() {
     return () => {
       clearInterval(slideTimer);
     };
-  }, []);
+  }, [publicationIndex]);
+
+  const selectPublication = (index: number) => {
+    setPublicationIndex(index);
+  };
+
+  const showPreviousPublication = () => {
+    setPublicationIndex((prev) => (prev - 1 + publications.length) % publications.length);
+  };
+
+  const showNextPublication = () => {
+    setPublicationIndex((prev) => (prev + 1) % publications.length);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -130,14 +142,6 @@ export default function Home() {
   };
 
   const activePublication = publications[publicationIndex];
-
-  const showPreviousPublication = () => {
-    setPublicationIndex((prev) => (prev - 1 + publications.length) % publications.length);
-  };
-
-  const showNextPublication = () => {
-    setPublicationIndex((prev) => (prev + 1) % publications.length);
-  };
 
   return (
     <main className="min-h-screen bg-[#070907] px-3 py-3 text-[#ece7df] sm:px-4 sm:py-4 lg:px-5 lg:py-5">
@@ -186,18 +190,18 @@ export default function Home() {
         Sanchit <span className="italic">Das</span>
       </h1>
       <p className="max-w-lg text-sm leading-7 text-[#bdb6ad] sm:text-[0.95rem] text-justify">
-  Hi, I am a Senior Research Scholar in the Department of Mathematics and Computing at the Indian Institute of Technology (IIT), Dhanbad, working in applied mathematics and elastodynamics. My research explores wave dynamics in advanced composite and piezoelectric materials. My work contributes to the theoretical foundations of smart material systems, with particular relevance to surface acoustic wave sensors.
+ Hi, I am a Senior Research Scholar in the Department of Mathematics and Computing at the Indian Institute of Technology (IIT) (ISM) Dhanbad. My research lies in applied mathematics, elastodynamics, and computational wave mechanics, with a focus on guided and surface acoustic wave propagation in smart, functionally graded, and multiphysics materials. I work on analytical, semi-analytical, spectral collocation, and finite element approaches to study dispersion, attenuation, coupling behaviour, interface effects, and sensing characteristics relevant to surface acoustic wave devices and non-destructive evaluation.
 </p>
     </div>
 
-    <div className="max-w-sm space-y-3 text-sm leading-6 text-[#d1cbc1]">
+    <div className="max-w-md space-y-3 text-sm leading-6 text-[#d1cbc1]">
       <p className="uppercase tracking-[0.34em] text-[#88857e]">Research Interests</p>
       <ul>
         <li>1. Elastodynamics of smart and functionally graded materials</li>
-        <li>2. Mathematical modelling of wave dynamics in advanced materials.</li>
-        <li>3. Analytical and asymptotic methods for differential equations in continuum mechanics</li>
-        <li>4. Coupled electromechanical behaviour in advanced material systems.</li>
-        <li>5. Surface acoustic wave propagation in smart materials, with applications to SAW devices and non-destructive testing.</li>
+        <li>2. Guided and surface acoustic wave propagation in multiphysics media</li>
+        <li>3. Analytical and semi-analytical methods in continuum mechanics</li>
+        <li>4. Spectral collocation and finite element methods for wave propagation</li>
+        <li>5. Applications of wave propagation to surface acoustic wave sensing and device design</li>
       </ul>
     </div>
   </div>
@@ -531,6 +535,35 @@ function ImageReveal() {
         {/* <div className="absolute inset-x-4 bottom-4 rounded-full border border-white/10 bg-black/55 px-4 py-2 text-[10px] uppercase tracking-[0.36em] text-[#cdc6bb] backdrop-blur-md">
           Images auto-switch every 5-10 seconds
         </div> */}
+      </div>
+
+      {/* Social Links */}
+      <div className="mt-4 flex items-center justify-center gap-3">
+        <a
+          href="https://scholar.google.com/citations?user=imZYLccDkGIC&hl=en&oi=ao"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-[#ece7df] shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-[#4285F4]/40 hover:bg-[#4285F4]/10 hover:text-white active:translate-y-0"
+          title="Google Scholar Profile"
+        >
+          <svg className="h-4 w-4 fill-current text-[#4285F4]" viewBox="0 0 24 24">
+            <path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.838 3.94A8 8 0 0 1 12 9a8 8 0 0 1 7.162 4.44L24 9.5z" />
+          </svg>
+          <span>Google Scholar</span>
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/sanchit-dass-853561248"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-[#ece7df] shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-[#0A66C2]/40 hover:bg-[#0A66C2]/10 hover:text-white active:translate-y-0"
+          title="LinkedIn Profile"
+        >
+          <svg className="h-4 w-4 fill-current text-[#0A66C2]" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+          </svg>
+          <span>LinkedIn</span>
+        </a>
       </div>
     </div>
   );
