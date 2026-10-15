@@ -157,11 +157,11 @@ export default function Home() {
           </div>
 
           <nav className="hidden items-center gap-8 text-sm text-[#b9b3aa] md:flex">
-            <a href="" className="transition-colors hover:text-[#ece7df]">
+            <a href="#about" className="transition-colors hover:text-[#ece7df]">
               About
             </a>
-            <a href="#research" className="transition-colors hover:text-[#ece7df]">
-              Research
+            <a href="/beyond-research" className="transition-colors hover:text-[#ece7df]">
+              Beyond Research
             </a>
             <a href="#research" className="transition-colors hover:text-[#ece7df]">
               Publications
@@ -190,18 +190,18 @@ export default function Home() {
         Sanchit <span className="italic">Das</span>
       </h1>
       <p className="max-w-lg text-sm leading-7 text-[#bdb6ad] sm:text-[0.95rem] text-justify">
- Hi, I am a Senior Research Scholar in the Department of Mathematics and Computing at the Indian Institute of Technology (IIT) (ISM) Dhanbad. My research lies in applied mathematics, elastodynamics, and computational wave mechanics, with a focus on guided and surface acoustic wave propagation in smart, functionally graded, and multiphysics materials. I work on analytical, semi-analytical, spectral collocation, and finite element approaches to study dispersion, attenuation, coupling behaviour, interface effects, and sensing characteristics relevant to surface acoustic wave devices and non-destructive evaluation.
+ Hi, I am a Senior Research Scholar in the Department of Mathematics and Computing at the Indian Institute of Technology (IIT) Dhanbad. My research lies in applied mathematics, elastodynamics, and computational wave mechanics, with a focus on guided and surface acoustic wave propagation in smart, functionally graded, and multiphysics materials. I work on analytical, semi-analytical, spectral collocation, and finite element approaches to study dispersion, attenuation, coupling behaviour, interface effects, and sensing characteristics relevant to surface acoustic wave devices and non-destructive evaluation.
 </p>
     </div>
 
     <div className="max-w-md space-y-3 text-sm leading-6 text-[#d1cbc1]">
       <p className="uppercase tracking-[0.34em] text-[#88857e]">Research Interests</p>
       <ul>
-        <li>1. Elastodynamics of smart and functionally graded materials</li>
-        <li>2. Guided and surface acoustic wave propagation in multiphysics media</li>
-        <li>3. Analytical and semi-analytical methods in continuum mechanics</li>
-        <li>4. Spectral collocation and finite element methods for wave propagation</li>
-        <li>5. Applications of wave propagation to surface acoustic wave sensing and device design</li>
+        <li>1. Elastodynamics of smart and functionally graded materials.</li>
+        <li>2. Guided and surface acoustic wave propagation in multiphysics media.</li>
+        <li>3. Analytical and semi-analytical methods in continuum mechanics.</li>
+        <li>4. Spectral collocation and finite element methods for wave propagation.</li>
+        <li>5. Applications of wave propagation to surface acoustic wave sensing and device design.</li>
       </ul>
     </div>
   </div>
@@ -380,7 +380,7 @@ export default function Home() {
 
           <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             <MiniCard label="Award" title="Best Research Paper" text="Best Research Paper Award in Poster Category at IIT Indore (2023)." accent="neutral" />
-            <MiniCard label="Conferences" title="Three Major Venues" text="Presented at IIT Indore, IIT Dhanbad, RIT Bangalore with international collaborators." accent="dark" />
+            <MiniCard label="Conferences" title="Four Major Venues" text="Presented at IIT Indore, IIT Dhanbad, RIT Bangalore, University of Cagliari, Italy with international collaborators." accent="dark" />
             <MiniCard label="Workshop" title="Hydrodynamic Stability" text="Completed GIAN Course on Introduction to Hydrodynamic Stability (2025)." accent="green" />
             <MiniCard label="Research Fellow" title="IAS-INSA-NASI" text="Summer Research Fellow at Indian Academy of Sciences (2023)." accent="neutral" />
           </div>
@@ -400,7 +400,6 @@ export default function Home() {
               </p>
               <div className="mt-6 space-y-3 text-sm text-[#ddd7cc]">
                 <p>sanchitdass.maths@gmail.com</p>
-                <p>+91 7985654596</p>
                 <p>Based in India</p>
               </div>
             </div>
@@ -491,16 +490,17 @@ function MiniCard({
 }
 
 function ImageReveal() {
-  const [showPrimary, setShowPrimary] = useState(true);
+  const images = ["/main.jpeg", "/image2.jpeg", "/substitute.jpeg"];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
     const scheduleNextToggle = () => {
-      const nextDelayMs = 5000 + Math.floor(Math.random() * 5001);
+      const nextDelayMs = 3000 + Math.floor(Math.random() * 3001);
 
       timeoutId = setTimeout(() => {
-        setShowPrimary((prev) => !prev);
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
         scheduleNextToggle();
       }, nextDelayMs);
     };
@@ -510,31 +510,24 @@ function ImageReveal() {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, []);
+  }, [images.length]);
 
   return (
     <div className="relative mx-auto w-full max-w-105 lg:max-w-110">
       <div className="relative aspect-[0.86] overflow-hidden rounded-[22px] border border-white/10 bg-[#0d100e] shadow-[0_22px_60px_rgba(0,0,0,0.45)]">
-        <Image
-          src="/substitute.jpeg"
-          alt="Secondary portrait"
-          fill
-          priority
-          className={`object-cover transition-opacity duration-1200 ${showPrimary ? "opacity-0" : "opacity-100"}`}
-          sizes="(max-width: 1024px) 90vw, 440px"
-        />
-        <Image
-          src="/main.jpeg"
-          alt="Primary portrait"
-          fill
-          priority
-          className={`object-cover transition-opacity duration-1200 ${showPrimary ? "opacity-100" : "opacity-0"}`}
-          sizes="(max-width: 1024px) 90vw, 440px"
-        />
-
-        {/* <div className="absolute inset-x-4 bottom-4 rounded-full border border-white/10 bg-black/55 px-4 py-2 text-[10px] uppercase tracking-[0.36em] text-[#cdc6bb] backdrop-blur-md">
-          Images auto-switch every 5-10 seconds
-        </div> */}
+        {images.map((src, index) => (
+          <Image
+            key={src}
+            src={src}
+            alt={`Portrait ${index + 1}`}
+            fill
+            priority={index === 0}
+            className={`object-cover transition-opacity duration-1200 ${
+              currentImageIndex === index ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+            sizes="(max-width: 1024px) 90vw, 440px"
+          />
+        ))}
       </div>
 
       {/* Social Links */}
