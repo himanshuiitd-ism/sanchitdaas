@@ -12,7 +12,7 @@ type SectionItem = {
 type PublicationItem = {
   label: string;
   title: string;
-  text: string;
+  doi: string;
   statOneLabel: string;
   statOneValue: string;
   statTwoLabel: string;
@@ -39,18 +39,36 @@ const foundation: SectionItem[] = [
 
 const publications: PublicationItem[] = [
   {
-    label: "Peer reviewed - 2026",
-    title: "Nonlocal Love Wave Propagation in Piezoelectric-Poroelastic Layered Media",
-    text: "Published in International Journal of Numerical Methods for Heat & Fluid Flow. Investigates spring and membrane interface models with diverse surface exposures using power series technique methodology.",
+    label: "Peer reviewed - April 2026",
+    title: "Nonlocal Love Wave Propagation in Piezoelectric-Poroelastic Layered Media with Spring-Membrane Interfaces and Diverse Surface Exposures",
+    doi: "https://doi.org/10.1108/HFF-12-2025-0971",
     statOneLabel: "Journal",
-    statOneValue: "International Journal of Numerical Methods for Heat & Fluid Flow",
+    statOneValue: "Int. Journal of Numerical Methods for Heat & Fluid Flow",
     statTwoLabel: "Impact Factor",
-    statTwoValue: "5.1 (Q1)",
+    statTwoValue: "5.3 (Q1)",
   },
   {
-    label: "Highlighted work",
-    title: "Non-locality Effects on Bluestein-Gulyaev Wave Propagation",
-    text: "Published in Physica Scripta (Q2). Analyzes spring and membrane models in piezo-poroelastic layered structures using advanced mathematical techniques.",
+    label: "Published - May 2026",
+    title: "Impact of buffer layer on piezo-magneto-electric fibre-reinforced composite structure on Electro-magneto-mechanical coupling and mass-loading sensitivity analysing Love wave",
+    doi: "https://doi.org/10.12989/sss.2026.37.5.451",
+    statOneLabel: "Journal",
+    statOneValue: "Smart Structures and Systems",
+    statTwoLabel: "Impact Factor",
+    statTwoValue: "2.2 (Q2)",
+  },
+  {
+    label: "Accepted - August 2026",
+    title: "A unified analysis of Love and Bleustein–Gulyaev waves in piezo-viscoelastic layered structures with graded buffer layer and imperfect interfaces",
+    doi: "https://doi.org/10.1140/epjp/s13360-026-08224-0",
+    statOneLabel: "Journal",
+    statOneValue: "The European Physical Journal Plus",
+    statTwoLabel: "Impact Factor",
+    statTwoValue: "2.9 (Q2)",
+  },
+  {
+    label: "Published - April 2026",
+    title: "Non-locality effects on the propagation of Bleustein–Gulyaev wave in a piezo-poroelastic layered structure analyzing spring and membrane models",
+    doi: "https://doi.org/10.1088/1402-4896/ae5aee",
     statOneLabel: "Journal",
     statOneValue: "Physica Scripta",
     statTwoLabel: "Impact Factor",
@@ -238,46 +256,121 @@ export default function Home() {
           </div>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
-            <article className="rounded-[18px] border border-white/6 bg-[#181b18] p-5 sm:p-6">
-              <div className="flex items-center justify-between gap-3">
-                <button
-                  type="button"
-                  onClick={showPreviousPublication}
-                  aria-label="Show previous publication"
-                  className="h-8 w-8 rounded-full border border-white/15 bg-white/5 text-sm text-[#ece7df] transition-colors hover:bg-white/10"
-                >
-                  ←
-                </button>
-                <p className="text-[10px] uppercase tracking-[0.34em] text-[#928d84]">{activePublication.label}</p>
-                <button
-                  type="button"
-                  onClick={showNextPublication}
-                  aria-label="Show next publication"
-                  className="h-8 w-8 rounded-full border border-white/15 bg-white/5 text-sm text-[#ece7df] transition-colors hover:bg-white/10"
-                >
-                  →
-                </button>
+            <article className="rounded-[18px] border border-white/6 bg-[#181b18] p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={showPreviousPublication}
+                      aria-label="Show previous publication"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-sm text-[#ece7df] transition-colors hover:bg-white/10 cursor-pointer"
+                    >
+                      ←
+                    </button>
+                    <button
+                      type="button"
+                      onClick={showNextPublication}
+                      aria-label="Show next publication"
+                      className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-sm text-[#ece7df] transition-colors hover:bg-white/10 cursor-pointer"
+                    >
+                      →
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-2 text-right">
+                    <p className="text-[10px] uppercase tracking-[0.34em] text-[#928d84]">{activePublication.label}</p>
+                    <span className="text-[10px] text-[#8f8a82]">({publicationIndex + 1}/{publications.length})</span>
+                  </div>
+                </div>
+
+                <h3 className="mt-4 max-w-2xl font-display text-2xl sm:text-3xl lg:text-[2.25rem] leading-[1.1] tracking-[-0.04em] text-[#f4efe6]">
+                  {activePublication.title}
+                </h3>
+
+                {/* Direct DOI Link Button & Badge */}
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <a
+                    href={activePublication.doi}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-[#c5d8c5]/30 bg-[#d6e4d2] px-4 py-2 text-xs font-semibold text-[#0a0d0b] transition hover:bg-[#e4efe1] hover:shadow-[0_0_15px_rgba(214,228,210,0.3)] active:scale-95"
+                  >
+                    <span>Access Publication (DOI)</span>
+                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                  <span className="font-mono text-xs text-[#8f8a82]">
+                    {activePublication.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//, "")}
+                  </span>
+                </div>
               </div>
-              <h3 className="mt-3 max-w-2xl font-display text-4xl leading-[0.95] tracking-[-0.05em] text-[#f4efe6] sm:text-[3rem]">
-                {activePublication.title}
-              </h3>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#c4bdb3]">
-                {activePublication.text}
-              </p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 <Stat label={activePublication.statOneLabel} value={activePublication.statOneValue} />
                 <Stat label={activePublication.statTwoLabel} value={activePublication.statTwoValue} />
               </div>
             </article>
 
-            <article className="rounded-[18px] border border-white/6 bg-[#181b18] p-5 sm:p-6">
-              <p className="text-[10px] uppercase tracking-[0.34em] text-[#928d84]">Featured visual</p>
-              <div className="mt-4 overflow-hidden rounded-[14px] border border-white/6 bg-black/30">
-                <Image src="/substitute.jpeg" alt="Substitute image" width={700} height={500} className="h-56 w-full object-cover" />
+            <article className="rounded-[18px] border border-white/6 bg-[#181b18] p-5 sm:p-6 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between">
+                  <p className="text-[10px] uppercase tracking-[0.34em] text-[#928d84]">
+                    Journal Index ({publications.length})
+                  </p>
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#d6e4d2]/80">Select paper</span>
+                </div>
+
+                <div className="mt-4 space-y-2.5">
+                  {publications.map((pub, idx) => {
+                    const isSelected = publicationIndex === idx;
+                    return (
+                      <div
+                        key={pub.doi}
+                        onClick={() => setPublicationIndex(idx)}
+                        className={`group flex flex-col gap-1 rounded-[14px] border p-3.5 transition-all cursor-pointer ${
+                          isSelected
+                            ? "border-[#c5d8c5]/40 bg-white/6 shadow-[0_4px_20px_rgba(0,0,0,0.35)]"
+                            : "border-white/5 bg-white/2 hover:border-white/15 hover:bg-white/4"
+                        }`}
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className={`text-[10px] font-mono uppercase tracking-wider ${isSelected ? "text-[#d6e4d2] font-semibold" : "text-[#7f7a72]"}`}>
+                            Paper 0{idx + 1} • {pub.label.split(" - ")[0]}
+                          </span>
+                          <a
+                            href={pub.doi}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="inline-flex items-center gap-1 text-[11px] font-mono text-[#8f8a82] hover:text-[#ece7df] transition-colors"
+                            title="Open DOI directly"
+                          >
+                            <span>DOI</span>
+                            <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        </div>
+                        <p className={`line-clamp-2 text-xs leading-5 ${isSelected ? "text-[#f4efe6] font-medium" : "text-[#b8b2a8]"}`}>
+                          {pub.title}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <p className="mt-4 text-sm leading-7 text-[#c4bdb3]">
-                The secondary image stays visible in the lower panel so users can see both assets in the composition.
-              </p>
+
+              <div className="mt-4 pt-3 border-t border-white/6 flex items-center justify-between text-xs text-[#8f8a82]">
+                <span>Showing {publicationIndex + 1} of {publications.length}</span>
+                <button
+                  type="button"
+                  onClick={() => setIsCvOpen(true)}
+                  className="text-xs text-[#d6e4d2] hover:underline cursor-pointer"
+                >
+                  View full CV →
+                </button>
+              </div>
             </article>
           </div>
 
